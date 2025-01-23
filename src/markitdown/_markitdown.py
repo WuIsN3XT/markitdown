@@ -1088,11 +1088,11 @@ class ImageConverter(MediaConverter):
     def _get_llm_description(self, local_path, extension, client, model, prompt=None):
         if prompt is None or prompt.strip() == "":            
             prompt = "Write a detailed caption for this image. Along with the detailed caption include the text of the image in markdown syntax format" \
-            + "If the image contains a table, return the contents of the table in markdown table syntax too, do not surround the markdown table with 3 backticks." \
-            + "For tables in markdown syntax, keep rows in the same line and use the following format: " \
-            + "| Header 1 | Header 2 | Header 3 |" \
-            + "|----------|----------|----------|" \
-            + "| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |"
+            + "If the image contains a table, return the contents of the table in markdown table syntax too, do not use 3 backticks sections ``` unless it is needed" \
+            + "For tables in markdown syntax, keep rows in the same line, do not add extra white space at end of text, and use the following format: " \
+            + "| Header 1 | Header 2 | Header 3 |\n" \
+            + "|----------|----------|----------|\n" \
+            + "| Row 1, Col 1 | Row 1, Col 2 | Row 1, Col 3 |\n"
         data_uri = ""
         with open(local_path, "rb") as image_file:
             content_type, encoding = mimetypes.guess_type("_dummy" + extension)
